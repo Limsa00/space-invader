@@ -8,12 +8,46 @@
 }
 
 .pixel{
-    background-color: lightgrey;
-    height: 21px;
-    width: 21px;
-    border: 2px white solid;
+    height: 20px;
+    width: 20px;
+    margin: 1px;
 }
 
 .gridLine{
     display: flex;
+}
+
+.grey{
+    background-color: grey;
+}
+
+.white{
+    background-color: white;
+}
+
+.black{
+    background-color: black;
+}
+
+#form{
+    background-color: #272BAD;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-input{
+    width: 50%;
+    height: 2em;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.form-button{
+    width: 20%;
+    height: 2em;
+    border-radius: 10px;
+    margin-top: 1em;
 }
