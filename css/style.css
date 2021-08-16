@@ -1,5 +1,6 @@
 #invader{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -11,4 +12,8 @@
     height: 21px;
     width: 21px;
     border: 2px white solid;
+}
+
+.gridLine{
+    display: flex;
 }
