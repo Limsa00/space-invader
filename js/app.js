@@ -1,28 +1,27 @@
 var app = {
     generateForm:()=>{
-        var form = document.getElementById('form');
+        app.form = document.getElementById('form');
 
-        var input = document.createElement('input');
-        input.classList.add('form-input');
-        input.placeholder = 'Définir taille de grille';
-        input.type = 'number';
-        input.value = 5;
-        input.min = 1;
-        input.max = 20;
+        app.input = document.createElement('input');
+        app.input.classList.add('form-input');
+        app.input.placeholder = 'Définir taille de grille';
+        app.input.type = 'number';
+        app.input.min = 1;
+        app.input.max = 20;
 
         var button = document.createElement('button');
         button.classList.add('form-button');
+        button.type = 'submit';
         button.textContent ='Valider';
 
-        form.appendChild(input);
-        form.appendChild(button);
+        app.form.appendChild(app.input);
+        app.form.appendChild(button);
     },
 
     createGridLine:()=>{
         app.gridLine = document.createElement('div');
         app.gridLine.classList.add('gridLine');
 
-        app.invader = document.getElementById('invader');
         app.invader.appendChild(app.gridLine);
     },
 
@@ -34,11 +33,11 @@ var app = {
         app.gridLine.appendChild(app.pixel);
     },
 
-    createGrid:(nbLine, nbPixel)=>{            
-        for (let index = 0; index < nbLine; index++) {
+    createGrid:(size)=>{            
+        for (let index = 0; index < size; index++) {
             app.createGridLine();
 
-            for (let index = 0; index < nbPixel; index++) {
+            for (let index = 0; index < size; index++) {
                 app.createPixel();
                 app.pixel.addEventListener('click', app.changeColorPixel);
             };            
@@ -61,10 +60,25 @@ var app = {
             pixel.classList.add('white');
         }
     },
+    
+    resetGrid:()=>{
+        app.invader = document.getElementById('invader');
+
+        app.invader.textContent='';
+    },
+
+    handleFormSubmit:(event)=>{
+        event.preventDefault();
+        app.resetGrid();
+        app.createGrid(app.input.value);
+    },
 
     init:()=>{
         app.generateForm();
-        app.createGrid(5,5);
+
+        app.form.addEventListener('submit',app.handleFormSubmit);
+
+        // app.createGrid(5);
     }
 };
 
