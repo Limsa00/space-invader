@@ -2,19 +2,27 @@ var app = {
     generateForm:()=>{
         app.form = document.getElementById('form');
 
-        app.input = document.createElement('input');
-        app.input.classList.add('form-input');
-        app.input.placeholder = 'Définir taille de grille';
-        app.input.type = 'number';
-        app.input.min = 1;
-        app.input.max = 20;
+        app.inputPixel = document.createElement('input');
+        app.inputPixel.classList.add('form-input');
+        app.inputPixel.placeholder = 'Nombre de pixel';
+        app.inputPixel.type = 'number';
+        app.inputPixel.min = 1;
+        app.inputPixel.max = 20;
+
+        app.inputSize = document.createElement('input');
+        app.inputSize.classList.add('pixel-size-input');
+        app.inputSize.placeholder = 'Taille du pixel';
+        app.inputSize.type = 'number'
+        app.inputSize.min = 25;
+        app.inputSize.max = 50;
 
         var button = document.createElement('button');
         button.classList.add('form-button');
         button.type = 'submit';
         button.textContent ='Valider';
 
-        app.form.appendChild(app.input);
+        app.form.appendChild(app.inputPixel);
+        app.form.appendChild(app.inputSize);
         app.form.appendChild(button);
     },
 
@@ -25,10 +33,13 @@ var app = {
         app.invader.appendChild(app.gridLine);
     },
 
-    createPixel:()=>{
+    createPixel:(size)=>{
         app.pixel = document.createElement('div');
         app.pixel.classList.add('pixel');
         app.pixel.classList.add('grey');
+
+        app.pixel.style.height = size+'px';
+        app.pixel.style.width = size+'px';
     
         app.gridLine.appendChild(app.pixel);
     },
@@ -38,7 +49,8 @@ var app = {
             app.createGridLine();
 
             for (let index = 0; index < size; index++) {
-                app.createPixel();
+                app.createPixel(app.inputSize.value);
+                console.log(app.inputSize.value);
                 app.pixel.addEventListener('click', app.changeColorPixel);
             };            
         };
@@ -70,15 +82,13 @@ var app = {
     handleFormSubmit:(event)=>{
         event.preventDefault();
         app.resetGrid();
-        app.createGrid(app.input.value);
+        app.createGrid(app.inputPixel.value);
     },
 
     init:()=>{
         app.generateForm();
 
         app.form.addEventListener('submit',app.handleFormSubmit);
-
-        // app.createGrid(5);
     }
 };
 

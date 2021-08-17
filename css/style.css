@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 120px);
     background-color: #6152CD;
 }
 
@@ -31,18 +31,19 @@
 
 #form{
     background-color: #272BAD;
-    height: 100px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.form-input{
-    width: 50%;
-    height: 2em;
+.form-input, .pixel-size-input{
+    width: 20%;
+    height: 1.5em;
     border-radius: 10px;
     text-align: center;
+    margin: 0.2em;
 }
 
 .form-button{
